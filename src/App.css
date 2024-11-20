@@ -1,130 +1,152 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#root, html, body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
 }
 
 
 /*------------- */
-nav{
+.navbar{
+ 
+  position:absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  position: absolute;
-  top: 0;
-  background: linear-gradient(90deg, rgba(45,45,46,1) 0%, rgba(29,27,31,1) 47%, rgba(45,45,46,1) 100%);  width: 100vw;
-  font-size: clamp(0.2rem, 2vw, 0.6rem);
+  justify-content: center;
+  background: #2d2d2e;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  height: 8%;
+  top:0%;
+  background: linear-gradient(90deg, rgba(45,45,46,1) 0%, rgba(29,27,31,1) 47%, rgba(45,45,46,1) 100%);
 }
 
+.navbar-socials{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.navbar-socials a{
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: color 0.3s;
+}
+
+.navbar-socials a:hover{
+  color: #ff1744;
+}
+
+
 .app-container{
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
- 
+  justify-content: center;
+  width: 90vw;
+  padding: 2%;
 }
 
 .prediction-container{
-  display: flex;
   flex-direction: column;
+  display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width:80vw;
-  padding: 5vh;
-  padding-left: 5vw;
-  padding-right: 5vw;
-  
-  background: radial-gradient(circle, rgb(255, 0, 76) 0%, rgb(255, 22, 22) 100%);
-
+  padding: 0rem;
   border-radius: 2px;
-  box-shadow: 0 0 20px 2px rgb(22, 22, 22);
 }
+
+ label{
+  color: rgba(255, 255, 255, 0.801);
+  font-weight: 200;
+  font-size: clamp(1.2rem, 1.5vw, 2rem);
+  margin: 1rem;                                                  
+  width: 100%;
+  text-align: right;
+}
+
 
 .prediction-container button{
   margin: 1rem;
   background: rgb(45,45,46);
-
-}
-
-.prediction-container .inputs-container input:nth-child(2) ,.prediction-container .inputs-container input:nth-child(3){
- width: 100%;
-}
-
-.inputs-container label{
-  color: rgba(255, 255, 255, 0.801);
-  font-weight: 200;
-  font-size: clamp(1.2rem, 1.5vw, 2rem);
-  margin: 1rem;
-  
-  width: 100%;
-
-  text-align: left;
-
-
 }
 
 .input-container{
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
- /*  justify-content: space-evenly; */
+  justify-content: center;
+  width: 60%;
 } 
 
-.inputs-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+.input-container input{
+  height: 2%;
 }
-input.field-input{
-  width: 100vw;
-  margin: 1rem;
-  padding: 1rem;
+
+input.field-input, select{
+  width: 100%;
+  padding: 0.5em;
   border-radius: 10px;
   border: none;
   background: rgb(45,45,46);
   color: white;
-  
+  font-size: clamp(0.5em, 1em, 1.5em);
+}
+.input-container input{
+ padding: 1.5%;
 }
 
-
-/*---------------*/
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-container .field-input{
+  padding: 1.5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.footer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #2d2d2e;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  height: 10%;
+  bottom: 0;
 }
 
-.card {
-  padding: 2em;
+.footer p {
+  margin: 0.5rem 0;
 }
 
-.read-the-docs {
-  color: #888;
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer-socials a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-socials a:hover {
+  color: #ff1744;
+}
+
+select{
+  color: white;
+}
+
+option{
+  color: white;
 }
