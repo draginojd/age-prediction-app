@@ -150,3 +150,56 @@ select{
 option{
   color: white;
 }
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 0;
+  }
+
+  .navbar-socials {
+    flex-direction: row;
+    font-size: 1rem;
+  }
+
+  .app-container {
+    width: 100%;
+    padding: 1em;
+    margin-top: -20%;
+  }
+
+  h1.info{
+    font-size: clamp(1.5rem, 2vw, 2rem);
+  }
+
+  .input-container {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  label {
+    text-align: left;
+  }
+
+  .input-container input {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  button {
+    margin: 5%;
+    width: 100%;
+  }
+
+  .footer {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 0;
+  }
+
+  .footer-socials {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+}
