@@ -75,9 +75,10 @@
 }
 
 
-.prediction-container button{
+button{
   margin: 1rem;
-  background: rgb(45,45,46);
+  width: 30%;
+
 }
 
 .input-container{
