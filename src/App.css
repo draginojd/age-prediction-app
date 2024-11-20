@@ -157,6 +157,7 @@ option{
 }
 
 @media (max-width: 600px) {
+  /*PHONES */
   .navbar {
     flex-direction: column;
     height: auto;
@@ -192,6 +193,10 @@ option{
     padding: 1rem;
   }
 
+  select option {
+    font-size: clamp(1em, 1vw, 1.5em);
+  }
+
   button {
     margin: 5%;
     width: 100%;
@@ -206,5 +211,81 @@ option{
   .footer-socials {
     flex-direction: row;
     gap: 0.5rem;
+  }
+ 
+}
+
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  /* TABLETS  & MEDIUM SIZED SCREEENS*/
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 0;
+    
+  }
+
+  .navbar-socials {
+    flex-direction: row;
+    font-size: 1rem;
+    
+  }
+
+  .navbar-socials a{
+    font-size: clamp(2em, 2vw, 1.5em);
+  };
+
+  .app-container {
+    width: 100%;
+    padding: 5em;
+    margin-top: -20%;
+    border: solid 1px red;
+  }
+
+  h1.info{
+    font-size: clamp(2.5rem, 2vw, 3rem);
+  }
+
+  .input-container {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  label {
+    text-align: left;
+  }
+
+  .input-container input {
+    width: 100%;
+    padding: 2em;
+    height: 20%;
+    font-size: clamp(2em, 2vw, 1.5em);
+  }
+
+  .field-input{
+    font-size: clamp(2em, 2vw, 1.5em);
+  }
+
+  select.field-input option {
+    font-size: clamp(1em, 1vw, 1.5em);
+  }
+
+  button {
+    font-size: clamp(1em, 4vw, 2.5em);
+    margin: 5%;
+    padding:2%;
+    width: 100%;
+  }
+
+  .footer {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 0;
+  }
+
+  .footer-socials {
+    flex-direction: row;
+    gap: 1.5rem;
+    font-size: clamp(1em, 4vw, 2.5em);
   }
 }
