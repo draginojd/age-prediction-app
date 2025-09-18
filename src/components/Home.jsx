@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import fallbackCountries from '../data/countries-fallback.json';
 
   /******************************************** */
 
@@ -11,6 +12,8 @@ const Home = () => {
   const [countryCode, setCountryCode] = useState("");
   const [error, setError] = useState("");
   const [countryCodes, setCountryCodes] = useState([]);
+  const [countriesLoading, setCountriesLoading] = useState(false);
+  const [countriesFetchError, setCountriesFetchError] = useState("");
 
   const handleInputChange = (event) => {
     setName(event.target.value);
@@ -46,23 +49,44 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchCountryCodes = async () => {
-      try {
-        const response = await fetch('https://restcountries.com/v3.1/all');
-        const data = await response.json();
-        const codes = data.map(country => ({
+  // fetch function is defined here so we can call it on mount and on retry
+  const fetchCountryCodes = async () => {
+    setCountriesLoading(true);
+    setCountriesFetchError("");
+    try {
+      const response = await fetch('https://restcountries.com/v3.1/all');
+      if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
+      const data = await response.json();
+      // Filter out entries without a 2-letter code and map to {code,name}
+      const codes = data
+        .filter(country => country && country.cca2 && country.name && country.name.common)
+        .map(country => ({
           code: country.cca2,
           name: country.name.common
-        }));
-        setCountryCodes(codes);
-      } catch (error) {
-        console.error("Error fetching country codes:", error);
-      }
-    };
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
 
+      setCountryCodes(codes);
+    } catch (err) {
+      console.error("Error fetching country codes:", err);
+      // Expose the real error message so user can see why it failed (CORS, network, etc.)
+      setCountriesFetchError(err && err.message ? `Failed to load countries: ${err.message}` : "Failed to load countries");
+      // populate fallback so the UI still works
+      if (fallbackCountries && fallbackCountries.length) {
+        setCountryCodes(fallbackCountries.map(c=>({code:c.code,name:c.name})));
+      }
+    } finally {
+      setCountriesLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchCountryCodes();
   }, []);
+
+  const handleRetryCountries = () => {
+    fetchCountryCodes();
+  };
 
   const renderCountryOptions = () => {
     return countryCodes.map((country) => (
@@ -101,8 +125,17 @@ const Home = () => {
           onChange={handleCountryChange}
         >
           <option value="">Select a country</option>
+          {countriesLoading && !countriesFetchError && (
+            <option value="" disabled>Loading countries...</option>
+          )}
+          {countriesFetchError && (
+            <option value="" disabled>{countriesFetchError}</option>
+          )}
           {renderCountryOptions()}
         </select>
+        {countriesFetchError && (
+          <button onClick={handleRetryCountries} style={{ marginLeft: '8px' }} className="predict-button">Retry</button>
+        )}
       </div>
 
       <button onClick={predictAge} className="predict-button">
