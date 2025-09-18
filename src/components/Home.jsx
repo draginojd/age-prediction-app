@@ -84,9 +84,7 @@ const Home = () => {
     fetchCountryCodes();
   }, []);
 
-  const handleRetryCountries = () => {
-    fetchCountryCodes();
-  };
+  // no retry button: keep fallback populated when fetch fails
 
   const renderCountryOptions = () => {
     return countryCodes.map((country) => (
@@ -105,37 +103,47 @@ const Home = () => {
       
       <h2>Estimate Age by Name</h2>
       <div className="input-container">
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={handleInputChange}
-          placeholder="Enter a name"
-          className="field-input"
-        />
+        <div className="form-row">
+          <div className="label-col">
+            <label htmlFor="name">Name:</label>
+          </div>
+          <div className="control-col">
+            <input
+              type="text"
+              value={name}
+              onChange={handleInputChange}
+              placeholder="Enter a name"
+              className="field-input"
+            />
+          </div>
+        </div>
       </div>
 
 
 
       <div className="input-container">
-        <label htmlFor="countryCode">Country Code:</label>
-        <select
-          className="field-input"
-          value={countryCode}
-          onChange={handleCountryChange}
-        >
-          <option value="">Select a country</option>
-          {countriesLoading && !countriesFetchError && (
-            <option value="" disabled>Loading countries...</option>
-          )}
-          {countriesFetchError && (
-            <option value="" disabled>{countriesFetchError}</option>
-          )}
-          {renderCountryOptions()}
-        </select>
-        {countriesFetchError && (
-          <button onClick={handleRetryCountries} style={{ marginLeft: '8px' }} className="predict-button">Retry</button>
-        )}
+        <div className="form-row">
+          <div className="label-col">
+            <label htmlFor="countryCode">Country Code:</label>
+          </div>
+          <div className="control-col">
+            <select
+              className="field-input"
+              value={countryCode}
+              onChange={handleCountryChange}
+            >
+              <option value="">Select a country</option>
+              {countriesLoading && !countriesFetchError && (
+                <option value="" disabled>Loading countries...</option>
+              )}
+              {countriesFetchError && (
+                <option value="" disabled>{countriesFetchError}</option>
+              )}
+              {renderCountryOptions()}
+            </select>
+            {/* removed retry button per request */}
+          </div>
+        </div>
       </div>
 
       <button onClick={predictAge} className="predict-button">
