@@ -131,6 +131,8 @@ const Home = () => {
               className="field-input"
               value={countryCode}
               onChange={handleCountryChange}
+              onFocus={() => setCountriesFetchError("")}
+              onClick={() => setCountriesFetchError("")}
             >
               <option value="">Select a country</option>
               {countriesLoading && !countriesFetchError && (
